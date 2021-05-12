@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="windows-1256">
+<title>List Deliveries</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container my-2">
+		<a th:href="@{/servlet/showNewDeliveryForm}"
+			class="btn btn-primary btn-sm mb-3">Add Deliveries </a>
+
+		<h1>List Deliveries</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>deliveryMan FullName</th>
+					<th>deliveryMan Phone</th>
+					<th>deliveryDate</th>
+					<th>status</th>
+					<th>moyenTransport</th>
+					<th>City</th>
+					<th>Price</th>
+					<th>Actions</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="delivery : ${listDeliveries}">
+					<td th:text="${delivery.deliveryMans.nom +' '+delivery.deliveryMans.prenom}"></td>
+					<td th:text="${delivery.deliveryMans.phone}"></td>
+					<td th:text="${delivery.deliveryDate}"></td>
+					<td th:text="${delivery.status}"></td>
+					<td th:text="${delivery.moyenTransport}"></td>
+					<td th:text="${delivery.lieu}"></td>
+					<td th:text="${delivery.frais}"></td>
+					<td>
+					<a th:href="@{/servlet/showNewReclamationForm/{id}(id=${delivery.id})}" class="btn btn-primary">reclamation</a>
+					
+					<a
+						th:href="@{/servlet/showFormForUpdateDelivery/{id}(id=${delivery.id})}"
+						class="btn btn-secondary">Update</a>
+												<a th:href="@{/servlet/deleteDelivery/{id}(id=${delivery.id})}" class="btn btn-danger">Delete</a>
+						
+						
+						</td>
+						
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Send mail</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Send mail to Client <span th:text="${reclamation.client.nom +' '+ reclamation.client.prenom}"></span> </h1>
+		<hr>
+
+		<form action="#" th:action="@{/servlet/sendMail/{id}(id=${reclamation.id})}"
+			th:object="${mail}" method="POST">
+			
+			<input type="hidden" th:field="*{to}"/>
+			<input type="text" th:field="*{subject}"
+				placeholder="mail Subject" class="form-control mb-4 col-4">
+				
+	
+		
+				<textarea th:field="*{content}"
+				placeholder="mail Content" class="form-control mb-4 col-4">
+				</textarea>
+				
+			
+
+
+			<button type="submit" class="btn btn-info col-2">Send
+				</button>
+		</form>
+
+		<hr>
+
+		<a th:href="@{/servlet/reclamationsList}"> Back to reclamation List</a>
+	</div>
+</body>
+</html>

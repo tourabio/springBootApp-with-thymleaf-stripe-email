@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="windows-1256">
+<title>List Reclamations</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container my-2">
+	<!-- 	<a th:href="@{/servlet/showNewReclamationForm}"
+			class="btn btn-primary btn-sm mb-3"> Add Reclamations </a>  -->
+
+		<h1>List Reclamations</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Client FullName</th>
+					<th>Client Phone</th>
+					<th>Title</th>
+					<th>Content</th>
+					<th>DateReclamation</th>
+					<th>Category</th>
+					<th>Actions</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reclamation : ${listReclamation}">
+					<td th:text="${reclamation.client.nom +' '+reclamation.client.prenom}"></td>
+					<td th:text="${reclamation.client.phone}"></td>
+					<td th:text="${reclamation.title}"></td>
+					<td th:text="${reclamation.content}"></td>
+					<td th:text="${reclamation.dateReclamation}"></td>
+					<td th:text="${reclamation.category}"></td>
+					<td>
+					
+											<a th:href="@{/servlet/charge/{id}(id=${reclamation.id})}" class="btn btn-dark">Charge</a>
+											<a th:href="@{/servlet/showSendEmailForm/{id}(id=${reclamation.id})}" class="btn btn-warning">SendMail</a>
+					
+
+		<!--  			<a
+						th:href="@{/servlet/showFormForUpdateReclamation/{id}(id=${reclamation.id})}"
+						class="btn btn-secondary">Update</a>
+						-->
+						
+						
+												<a th:href="@{/servlet/deleteReclamation/{id}(id=${reclamation.id})}" class="btn btn-danger">Delete</a>
+						
+						
+						</td>
+						
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>
